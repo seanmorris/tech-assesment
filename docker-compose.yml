@@ -2,7 +2,9 @@ version: '3.3'
 
 services:
   tech-assesment:
-    image: seanmorris/tech-assesment:latest
+    build:
+      context: ./
+      dockerfile: app.dockerfile
     restart: always
     ports:
       - "9000:80"

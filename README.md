@@ -10,9 +10,9 @@ Once those are installed, these commands should have it up an running.
 
 ```bash
 git clone git@github.com:seanmorris/tech-assesment.git
-cd tech-assesment
-docker build . --tag=seanmorris/tech-assesment:latest
+pushd tech-assesment
 docker-compose up
+popd
 ```
 
 Once you've done that, visit the following link:

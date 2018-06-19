@@ -16,6 +16,7 @@
         		display: flex;
         		min-height: 100vh;
         		flex-direction: column;
+        		font-family: sans-serif;
         	}
 
         	.normal {
