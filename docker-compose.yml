@@ -19,9 +19,9 @@ services:
     volumes:
       - schema:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: 'super-secret'
+      MYSQL_ROOT_PASSWORD: ''
       MYSQL_USER:          'tech-assesment'
-      MYSQL_PASSWORD:      'also-secret'
+      MYSQL_PASSWORD:      ''
       MYSQL_DATABASE:      'tech-assesment'
 
 volumes:

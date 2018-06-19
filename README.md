@@ -6,7 +6,7 @@
 
 You can start up the project quickly with [docker](https://docs.docker.com/install/) & [docker compose](https://docs.docker.com/compose/).
 
-Once those are installed, these commands should have it up an running.
+Once those are installed, these commands should have it up and running.
 
 ```bash
 git clone git@github.com:seanmorris/tech-assesment.git
@@ -32,4 +32,4 @@ Once you've done that, visit the following link:
 * Write model classes
 * Seed news & event data
 * Store tracking data
-
+* Use docker secrets to manage mysql password
