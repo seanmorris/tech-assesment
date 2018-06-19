@@ -6,10 +6,11 @@
 
 You can start up the project quickly with [docker](https://docs.docker.com/install/) & [docker compose](https://docs.docker.com/compose/).
 
-Once those are installed, three commands should have it up an running.
+Once those are installed, these commands should have it up an running.
 
 ```bash
 git clone git@github.com:seanmorris/tech-assesment.git
+cd tech-assesment
 docker build . --tag=seanmorris/tech-assesment:latest
 docker-compose up
 ```
@@ -18,9 +19,16 @@ Once you've done that, visit the following link:
 
 [http://localhost:9000/](http://localhost:9000/)
 
+## What's Done:
+
+* Routes
+* Basic HTML & CSS
+* Basic Docker Containerization
+
 ## TODO:
 
 * Create schema
+* Set up DB container
 * Write model classes
 * Seed news & event data
 * Store tracking data

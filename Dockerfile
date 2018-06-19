@@ -11,6 +11,7 @@ COPY . /app
 
 RUN	chmod -R 775 /app \
 	&& cd /app \
+	&& mv .env.example .env \
 	&& composer install --prefer-source --no-interaction \
 	&& rm -rf /var/www/html \
 	&& ln -s /app/public /var/www/html \

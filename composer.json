@@ -1,9 +1,6 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
-    "license": "MIT",
-    "type": "project",
+    "name": "seanmorris/tech-assesment",
+    "description": "Sean Morris' Tech Assesment.",
     "require": {
         "php": "^7.1.3",
         "fideloper/proxy": "^4.0",
