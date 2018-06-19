@@ -1,0 +1,27 @@
+version: '3.3'
+
+services:
+  tech-assesment:
+    image: seanmorris/tech-assesment:latest
+    restart: always
+    ports:
+      - "9000:80"
+    depends_on:
+      - database
+
+  database:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - "9001:3306"
+    volumes:
+      - schema:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 'super-secret'
+      MYSQL_USER:          'tech-assesment'
+      MYSQL_PASSWORD:      'also-secret'
+      MYSQL_DATABASE:      'tech-assesment'
+
+volumes:
+  schema:
+    driver: "local"
