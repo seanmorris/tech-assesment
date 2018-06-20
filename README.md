@@ -12,7 +12,6 @@ Once those are installed, these commands should have it up and running.
 git clone git@github.com:seanmorris/tech-assesment.git
 pushd tech-assesment
 php docker-compose.yml.gen.php > docker-compose.yml
-docker-compose build
 docker-compose up
 popd
 ```
@@ -34,13 +33,12 @@ You can also build the containers locally by passing the "local" parameter to th
 php docker-compose.yml.gen.php local > docker-compose.yml
 ```
 
-This fits into the while script like so:
+This fits into the above script like so:
 
 ```bash
 git clone git@github.com:seanmorris/tech-assesment.git
 pushd tech-assesment
 php docker-compose.yml.gen.php local > docker-compose.yml
-docker-compose build
 docker-compose up
 popd
 ```

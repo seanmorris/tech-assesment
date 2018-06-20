@@ -30,6 +30,6 @@ CMD cd /app \
 	&& composer dump-autoload \
 	&& php artisan migrate:fresh \
 	&& echo "Seeding DB..." \
-	&& php artisan db:seed --class=ArticleSeeder\
+	&& php artisan db:seed \
 	&& echo "Done." \
 	&& apache2-foreground
