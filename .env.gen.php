@@ -1,4 +1,4 @@
-APP_NAME=Laravel
+APP_NAME=Tech-Assesment
 APP_ENV=local
 APP_KEY=
 APP_DEBUG=true
@@ -7,11 +7,16 @@ APP_URL=http://localhost
 LOG_CHANNEL=stack
 
 DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=homestead
-DB_USERNAME=homestead
-DB_PASSWORD=secret
+DB_HOST=<?=getenv('MYSQL_HOST'); ?>
+
+DB_PORT=<?=getenv('MYSQL_PORT'); ?>
+
+DB_DATABASE=<?=getenv('MYSQL_DATABASE'); ?>
+
+DB_USERNAME=<?=getenv('MYSQL_USER'); ?>
+
+DB_PASSWORD=<?=getenv('MYSQL_PASSWORD'); ?>
+
 
 BROADCAST_DRIVER=log
 CACHE_DRIVER=file

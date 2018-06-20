@@ -17,18 +17,66 @@ Route::get('/', function () {
 
 Route::get('/home', function () {
     return view('chrome', [
-    	'content' => view('home')
+        'content' => view('home')
+    ]);
+});
+
+Route::get('/about', function () {
+    return view('chrome', [
+        'content' => view('about')
+    ]);
+});
+
+
+Route::get('/blank', function () {
+    return view('chrome', [
+        'content' => view('blank')
     ]);
 });
 
 Route::get('/news', function () {
+
+    $articles = \App\Models\Article::orderBy('id', 'desc')->paginate(30);
+
     return view('chrome', [
-    	'content' => view('news')
+        'content' => view('news', [
+            'articles' => $articles
+        ])
+    ]);
+});
+
+Route::get('/news/{articleId}', function ($articleId) {
+
+    $article = \App\Models\Article::where('id', $articleId)->first();
+
+    return view('chrome', [
+        'content' => view('article', [
+            'article' => $article
+        ])
     ]);
 });
 
 Route::get('/events', function () {
+
+    $events = \App\Models\Event::orderBy('id', 'desc')->paginate(30);
+
     return view('chrome', [
-    	'content' => view('events')
+        'content' => view('events', [
+            'events' => $events
+        ])
+    ]);
+});
+
+Route::get('/events/{eventId}', function ($eventId) {
+
+    $event = \App\Models\Event::where('id', $eventId)->first();
+
+    $encodedLocation = urlencode($event->location);
+
+    return view('chrome', [
+        'content' => view('event', [
+            'encodedLocation' => $encodedLocation
+            , 'event'         => $event
+        ])
     ]);
 });

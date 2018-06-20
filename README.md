@@ -1,4 +1,4 @@
-# Tech Assesment
+# Tech Assessment
 
 ```v0.01 humble beginnings```
 
@@ -11,6 +11,8 @@ Once those are installed, these commands should have it up and running.
 ```bash
 git clone git@github.com:seanmorris/tech-assesment.git
 pushd tech-assesment
+php docker-compose.yml.gen.php > docker-compose.yml
+docker-compose build
 docker-compose up
 popd
 ```
@@ -24,12 +26,12 @@ Once you've done that, visit the following link:
 * Routes
 * Basic HTML & CSS
 * Basic Docker Containerization
+* Article & Event Seeding
+* MySQL password randomly generated before build
 
 ## TODO:
 
-* Create schema
-* Set up DB container
-* Write model classes
-* Seed news & event data
-* Store tracking data
-* Use docker secrets to manage mysql password
+* Image model
+* Tracking & TrackingSummary models & schema
+* Tracking endpoints
+
