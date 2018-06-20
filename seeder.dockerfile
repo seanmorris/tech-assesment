@@ -23,8 +23,9 @@ RUN cd /app \
 
 CMD cd /app \
 	&& echo "Setting environment vars..." \
-	&& php .env.gen.php | tee .env \
+	&& php .env.gen.php > .env \
 	&& php artisan key:generate \
+	&& ./wait-for-it.sh database:3306 \
 	&& echo "Running migrations..." \
 	&& composer dump-autoload \
 	&& php artisan migrate:fresh \
