@@ -13,7 +13,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             ArticleSeeder::class
-	        , EventSeeder::class
+            , EventSeeder::class
+	        , ImageSeeder::class
 	    ]);
     }
 }

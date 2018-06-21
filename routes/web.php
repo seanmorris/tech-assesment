@@ -48,10 +48,19 @@ Route::get('/news', function () {
 Route::get('/news/{articleId}', function ($articleId) {
 
     $article = \App\Models\Article::where('id', $articleId)->first();
+    $image   = $article->images()->first();
+
+    $imageCrop = NULL;
+
+    if($image)
+    {
+        $imageCrop = $image->crop(640, 480);
+    }
 
     return view('chrome', [
         'content' => view('article', [
             'article' => $article
+            , 'image' => $imageCrop
         ])
     ]);
 });
