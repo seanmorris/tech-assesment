@@ -14,13 +14,22 @@
     <body>
     	<div class = "header normal">
     		<h1>Tech Assessment</h1>
-    		<ul class = "navigation">
-    			<li><a href = "/home">Home</a></li>
-    			<li><a href = "/news">News</a></li>
-                <li><a href = "/events">Events</a></li>
-                <li><a href = "/about">About</a></li>
-    			<li><a href = "/blank">Blank</a></li>
-    		</ul>
+            <div class = "menu" data-togglable="menu">
+        		<ul class = "navigation">
+        			<li><a href = "/home">Home</a></li>
+        			<li><a href = "/news">News</a></li>
+                    <li><a href = "/events">Events</a></li>
+                    <li><a href = "/about">About</a></li>
+        			<li><a href = "/blank">Blank</a></li>
+        		</ul>
+                <div class = "topRight narrow">
+                    <div class = "hamburger" data-toggle="menu">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
     	</div>
     	<div class = "content normal">
     		{!! $content !!}
@@ -29,5 +38,6 @@
     		<div>Parse Test</div>
     		<div>Sean Morris</div>
     	</div>
+        <script type = "text/javascript" src = "/js/menu.js"></script>
     </body>
 </html>
