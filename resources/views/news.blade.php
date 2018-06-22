@@ -7,6 +7,9 @@
 	<ul class = "news">
 		@foreach ($articles as $article)
 		    <li>
+		    	@if(count($article->images))
+		    		<img class = "preview" src = "{{$article->images()->first()->crop(100,100) }}" />
+		    	@endif
 		    	<a href = "news/{{ $article->id }}">{{ $article->title }}</a>
 		    	&nbsp;&nbsp;&nbsp;&nbsp;
 		    	{{ date('m/d/Y', strtotime($article->happened_on)) }}
