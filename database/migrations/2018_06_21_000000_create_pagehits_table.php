@@ -36,13 +36,17 @@ class CreatePageHitsTable extends Migration
 
 			$table->index('date');
 			$table->index('session_id');
-			$table->index('item_type');
+			
+			$table->index('item_type')
+				->nullable();
+
 			$table->index('url');
 		});
 		Schema::create('tracking_summaries', function (Blueprint $table) {
 			$table->increments('id');
 			$table->date('date');
-			$table->string('type');
+			$table->string('type')
+				->nullable();
 			$table->string('session_id');
 			$table->unsignedInteger('value');
 			$table->timestamps();

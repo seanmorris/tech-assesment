@@ -14,9 +14,15 @@ use Illuminate\Http\Request;
 */
 
 Route::post('/tracking', function (Request $request) {
+
+	if(!$request->url)
+	{
+		return '402 - bad req';
+	}
+
 	$trackingData = [
-		'item_type'    => $request->item_type
-		, 'item_id'    => $request->item_id
+		'item_type'    => $request->item_type ?? NULL
+		, 'item_id'    => $request->item_id   ?? NULL
 		, 'url'        => $request->url
 		, 'ip'         => $_SERVER['REMOTE_ADDR']
 		, 'session_id' => session_id()
