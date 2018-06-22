@@ -12,80 +12,89 @@
 */
 
 Route::get('/', function () {
-    return redirect('home');
+	return redirect('home');
 });
 
 Route::get('/home', function () {
-    return view('chrome', [
-        'content' => view('home')
-    ]);
+	return view('chrome', [
+		'content' => view('home')
+	]);
 });
 
 Route::get('/about', function () {
-    return view('chrome', [
-        'content' => view('about')
-    ]);
+	return view('chrome', [
+		'content' => view('about')
+	]);
 });
 
 
 Route::get('/blank', function () {
-    return view('chrome', [
-        'content' => view('blank')
-    ]);
+	return view('chrome', [
+		'content' => view('blank')
+	]);
 });
 
 Route::get('/news', function () {
 
-    $articles = \App\Models\Article::orderBy('id', 'desc')->paginate(30);
+	$articles = \App\Models\Article::orderBy('id', 'desc')->paginate(30);
 
-    return view('chrome', [
-        'content' => view('news', [
-            'articles' => $articles
-        ])
-    ]);
+	return view('chrome', [
+		'content' => view('news', [
+			'articles' => $articles
+		])
+	]);
 });
 
 Route::get('/news/{articleId}', function ($articleId) {
 
-    $article = \App\Models\Article::where('id', $articleId)->first();
-    $image   = $article->images()->first();
+	if(!$article = \App\Models\Article::where('id', $articleId)->first())
+	{
+		return 404;
+	}
 
-    $imageCrop = NULL;
+	$image   = $article->images()->first();
 
-    if($image)
-    {
-        $imageCrop = $image->crop(640, 480);
-    }
+	$imageCrop = NULL;
 
-    return view('chrome', [
-        'content' => view('article', [
-            'article' => $article
-            , 'image' => $imageCrop
-        ])
-    ]);
+	if($image)
+	{
+		$imageCrop = $image->crop(640, 480);
+	}
+
+	return view('chrome', [
+		'content' => view('article', [
+			'article'    => $article
+			, 'image'    => $imageCrop
+			, 'tracking' => $article->trackingData()
+		])
+	]);
 });
 
 Route::get('/events', function () {
 
-    $events = \App\Models\Event::orderBy('id', 'desc')->paginate(30);
+	$events = \App\Models\Event::orderBy('id', 'desc')->paginate(30);
 
-    return view('chrome', [
-        'content' => view('events', [
-            'events' => $events
-        ])
-    ]);
+	return view('chrome', [
+		'content' => view('events', [
+			'events' => $events
+		])
+	]);
 });
 
 Route::get('/events/{eventId}', function ($eventId) {
 
-    $event = \App\Models\Event::where('id', $eventId)->first();
+	if(!$event = \App\Models\Event::where('id', $eventId)->first())
+	{
+		return 404;
+	}
 
-    $encodedLocation = urlencode($event->location);
+	$encodedLocation = urlencode($event->location);
 
-    return view('chrome', [
-        'content' => view('event', [
-            'encodedLocation' => $encodedLocation
-            , 'event'         => $event
-        ])
-    ]);
+	return view('chrome', [
+		'content' => view('event', [
+			'encodedLocation' => $encodedLocation
+			, 'event'         => $event
+			, 'tracking'      => $event->trackingData()
+		])
+	]);
 });

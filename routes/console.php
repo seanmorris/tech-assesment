@@ -1,18 +1,33 @@
 <?php
 
-use Illuminate\Foundation\Inspiring;
+Artisan::command('aggregate_tracking', function () {
+	\App\Models\PageHit::groupBy('date', 'item_type', 'session_id')
+		->select(
+			DB::raw('COUNT(`id`) AS `hit_count`')
+			, 'session_id'
+			, 'item_type'
+			, 'date'
+		)
+		->orderBy('date')
+		->chunk(500, function($pageHitGroups) {
+			foreach($pageHitGroups as $pageHitGroup)
+			{
+				$trackingSummary = \App\Models\TrackingSummary::where([
+					'date'   => $pageHitGroup->date
+					, 'type' => $pageHitGroup->item_type
+				])->first();
 
-/*
-|--------------------------------------------------------------------------
-| Console Routes
-|--------------------------------------------------------------------------
-|
-| This file is where you may define all of your Closure based console
-| commands. Each Closure is bound to a command instance allowing a
-| simple approach to interacting with each command's IO methods.
-|
-*/
+				if(!$trackingSummary)
+				{
+					$trackingSummary = new \App\Models\TrackingSummary;
+				}
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->describe('Display an inspiring quote');
+				$trackingSummary->date       = $pageHitGroup->date;
+				$trackingSummary->type       = $pageHitGroup->item_type;
+				$trackingSummary->value      = $pageHitGroup->hit_count;
+				$trackingSummary->session_id = $pageHitGroup->session_id;
+
+				$trackingSummary->save();
+			}
+		});
+})->describe('Aggregate tracking data.');

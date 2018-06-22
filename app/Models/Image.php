@@ -8,7 +8,7 @@ class Image extends \Illuminate\Database\Eloquent\Model
 	}
 
 	public function imageable()
-    {
-        return $this->morphTo();
-    }
+	{
+		return $this->morphTo();
+	}
 }

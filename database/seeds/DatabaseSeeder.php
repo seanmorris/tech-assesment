@@ -4,17 +4,18 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        $this->call([
-            ArticleSeeder::class
-            , EventSeeder::class
-	        , ImageSeeder::class
-	    ]);
-    }
+	/**
+	 * Seed the application's database.
+	 *
+	 * @return void
+	 */
+	public function run()
+	{
+		$this->call([
+			ArticleSeeder::class
+			, EventSeeder::class
+			, ImageSeeder::class
+			, RelationshipSeeder::class
+		]);
+	}
 }

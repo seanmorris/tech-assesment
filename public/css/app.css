@@ -101,7 +101,7 @@ a {
 	display: none;
 }
 
-@media(max-width: 800px) {
+@media(max-width: 1200px) {
 	.navigation {
 		flex-direction: column;
 		background: white;
@@ -111,7 +111,7 @@ a {
 		margin-right: 10px;
 		width: 100%;
 		text-align: center;
-		margin: 10px;
+		margin-bottom: 30px;
 	}
 	.narrow {
 		display: initial;
@@ -120,14 +120,16 @@ a {
 		height: 0px;
 	}
 	.menu > .navigation {
-		transform-origin: top;
-		transform: scaleY(0);
-		overflow: hidden;
-		transition: all 0.2s ease-out;
+		transform: translate(0%, -50%);
+		transition: all 0.25s ease-out;
+		pointer-events: none;
+		opacity: 0;
 	}
 	.menu.open  > .navigation{
-		transition: all 0.2s ease-in;
-		transform: scaleY(1);
+		transition: all 0.25s ease-in;
+		transform: translate(0%, 0%);
+		pointer-events: initial;
+		opacity: 1;
 	}
 }
 
@@ -175,7 +177,7 @@ a {
 }
 
 .hamburger.open {
-	transition: all 0.25s ease-out;
+	transition: all 0.5s ease-out;
 }
 
 .hamburger.open > div:nth-child(1){

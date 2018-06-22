@@ -14,5 +14,12 @@ class RelationshipSeeder extends Seeder
 				$article->images()->attach([$article->id % $imageCount]);
 			}
 		});
+
+		\App\Models\Event::chunk(500, function($events) use($imageCount) {
+			foreach ($events as $event)
+			{
+				$event->images()->attach([$event->id % $imageCount]);
+			}
+		});
 	}
 }

@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', (event)=>{
+let menuInit = () => {
 	let menuToggle = document.querySelector('[data-toggle="menu"]');
 	let menuOpen   = false;
 	menuToggle.addEventListener('click', (event)=>{
@@ -27,4 +27,4 @@ document.addEventListener('DOMContentLoaded', (event)=>{
 		parent.classList.add('open');
 		menuToggle.classList.add('open');
 	});
-});
+};

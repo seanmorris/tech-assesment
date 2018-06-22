@@ -39,5 +39,7 @@
     		<div>Sean Morris</div>
     	</div>
         <script type = "text/javascript" src = "/js/menu.js"></script>
+        <script type = "text/javascript" src = "/js/t_r_a_c_k_e_r.js"></script>
+        <script type = "text/javascript" src = "/js/app.js"></script>
     </body>
 </html>
