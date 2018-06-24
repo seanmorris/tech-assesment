@@ -4,12 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <title>Tech Assessment</title>
-
-        <style type = "text/css">
-            @import url(/css/app.css);
-        </style>
     </head>
     <body>
     	<div class = "header">
@@ -41,6 +36,7 @@
     		<div>Parse Test</div>
     		<div>Sean Morris</div>
     	</div>
+        <style type = "text/css">@import url(/css/app.css);</style>
         <script type = "text/javascript" src = "/js/menu.js"></script>
         <script type = "text/javascript" src = "/js/t_r_a_c_k_e_r.js"></script>
         <script type = "text/javascript" src = "/js/app.js"></script>
