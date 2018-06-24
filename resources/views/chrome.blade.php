@@ -41,7 +41,9 @@
     		<div>Parse Test</div>
     		<div>Sean Morris</div>
     	</div>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script type = "text/javascript" src = "/js/menu.js"></script>
+        <script type = "text/javascript" src = "/js/t_r_a_c_k_e_r.js"></script>
+        <script type = "text/javascript" src = "/js/app.js"></script>
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-41157199-2"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
@@ -49,8 +51,5 @@
             gtag('js', new Date());
             gtag('config', 'UA-41157199-2');
         </script>
-        <script type = "text/javascript" src = "/js/menu.js"></script>
-        <script type = "text/javascript" src = "/js/t_r_a_c_k_e_r.js"></script>
-        <script type = "text/javascript" src = "/js/app.js"></script>
     </body>
 </html>
