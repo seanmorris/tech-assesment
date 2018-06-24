@@ -5,7 +5,7 @@ Artisan::command('aggregate_tracking', function () {
 		, 'session_id'
 		, 'date'
 	)
-	->orderBy('date', 'session_id', 'item_type')
+	->orderBy('date', 'session_id')
 	->chunk(500, function($pageHitGroups) {
 		foreach($pageHitGroups as $pageHitGroup)
 		{
