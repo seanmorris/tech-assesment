@@ -17,14 +17,12 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function () {
-
 	return view('chrome', [
 		'content' => view('home')
 	]);
 });
 
 Route::get('/about', function () {
-
 	return view('chrome', [
 		'content' => view('about')
 	]);
@@ -32,14 +30,12 @@ Route::get('/about', function () {
 
 
 Route::get('/blank', function () {
-
 	return view('chrome', [
 		'content' => view('blank')
 	]);
 });
 
 Route::get('/news', function () {
-
 	$articles = \App\Models\Article::with('images')
 		->orderBy('id', 'desc')
 		->paginate(30);
@@ -52,7 +48,6 @@ Route::get('/news', function () {
 });
 
 Route::get('/news/{articleId}', function ($articleId) {
-
 	if(!$article = \App\Models\Article::where('id', $articleId)->first())
 	{
 		abort(404);
@@ -64,7 +59,7 @@ Route::get('/news/{articleId}', function ($articleId) {
 
 	if($image)
 	{
-		$imageCrop = $image->crop(640, 480);
+		$imageCrop = $image->crop(950, 400);
 	}
 
 	return view('chrome', [
@@ -77,7 +72,6 @@ Route::get('/news/{articleId}', function ($articleId) {
 });
 
 Route::get('/events', function () {
-
 	$events = \App\Models\Event::orderBy('id', 'desc')->paginate(30);
 
 	return view('chrome', [
@@ -88,7 +82,6 @@ Route::get('/events', function () {
 });
 
 Route::get('/events/{eventId}', function ($eventId) {
-
 	if(!$event = \App\Models\Event::where('id', $eventId)->first())
 	{
 		abort(404);
@@ -100,7 +93,7 @@ Route::get('/events/{eventId}', function ($eventId) {
 
 	if($image)
 	{
-		$imageCrop = $image->crop(400, 400);
+		$imageCrop = $image->crop(475, 475);
 	}
 
 	$encodedLocation = urlencode($event->location);
@@ -113,4 +106,67 @@ Route::get('/events/{eventId}', function ($eventId) {
 			, 'tracking'      => $event->trackingData()
 		])
 	]);
+});
+
+Route::get('/tracking', function () {
+	$from = date('Y-m-d', strtotime($_GET['from'] ?? '7 days ago'));
+	$to   = date('Y-m-d', strtotime($_GET['to']   ?? 'now'));
+
+	$uniqueHits = 0;
+	$totalHits  = 0;
+
+	\App\Models\PageHit::countLoader()
+	->whereBetween('created_at', array($from, $to . ' 23:59:59'))
+	->chunk(500,
+		function($pageHitGroup) use(&$uniqueHits, &$totalHits) {
+			foreach ($pageHitGroup as $pageHits)
+			{
+				$uniqueHits += $pageHits->unique_hit_count;
+				$totalHits  += $pageHits->hit_count;
+			}
+		}
+	);
+
+	return view('chrome', [
+		'content' => view('tracking', [
+			'content'      => view('blank')
+			, 'from'       => $from
+			, 'to'         => $to
+			, 'uniqueHits' => $uniqueHits
+			, 'totalHits'  => $totalHits
+		])
+	]);
+});
+
+Route::get('/tracking/export', function () {
+	$from = date('Y-m-d', strtotime($_GET['from'] ?? '7 days ago'));
+	$to   = date('Y-m-d', strtotime($_GET['to']   ?? 'now'));
+
+	header(sprintf(
+		'Content-Disposition: attachment; filename=tracking_%s-%s.csv'
+		, $from
+		, $to
+	));
+	header('Content-type: application/csv');
+
+	$output = fopen('php://output', 'w');
+
+	fputcsv($output, ['url', 'unique hits', 'total hits']);
+
+	\App\Models\PageHit::countLoader()
+	->whereBetween('created_at', array($from, $to . ' 23:59:59'))
+	->chunk(500,
+		function($pageHits) use(&$output){
+			foreach($pageHits as $pageHit)
+			{
+				fputcsv($output, [
+					$pageHit->url
+					, $pageHit->unique_hit_count
+					, $pageHit->hit_count
+				]);
+			}
+		}
+	);
+
+	fclose($output);
 });

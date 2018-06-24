@@ -23,7 +23,7 @@ Route::post('/tracking', function (Request $request) {
 	$trackingData = [
 		'item_type'    => $request->item_type ?? NULL
 		, 'item_id'    => $request->item_id   ?? NULL
-		, 'url'        => $request->url
+		, 'url'        => parse_url($request->url, PHP_URL_PATH)
 		, 'ip'         => $_SERVER['REMOTE_ADDR']
 		, 'session_id' => session_id()
 	];
