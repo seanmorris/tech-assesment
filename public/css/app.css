@@ -8,6 +8,7 @@ body {
 	min-height: 100vh;
 	flex-direction: column;
 	font-family: sans-serif;
+	background-image: linear-gradient(to right, #f2f2f2, #f2f2f2, #e6e6e6, #d9d9d9, #cdcdcd);
 }
 
 .normal {

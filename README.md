@@ -50,9 +50,8 @@ popd
 * Basic Docker Containerization
 * Article & Event Seeding
 * MySQL password randomly generated before build
-
-## TODO:
-
-* Image model
+* Image modeling & relationship seeder
+* Responsive, animated menu
 * Tracking & TrackingSummary models & schema
 * Tracking endpoints
+* Tracking JS
