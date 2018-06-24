@@ -1,6 +1,5 @@
 let trackerInit = () => {
 
-
 	let trackingTag = document.querySelector('#tracking-data');
 	let tracking    = {};
 	
@@ -12,7 +11,9 @@ let trackerInit = () => {
 	tracking.url = window.location.href;
 
 	let trackingString = Object.keys(tracking).map((key) => {
-		return encodeURIComponent(key) + '=' + encodeURIComponent(tracking[key])
+		return encodeURIComponent(key)
+			+ '='
+			+ encodeURIComponent(tracking[key])
 	}).join('&');
 
 	var ajax = new XMLHttpRequest();

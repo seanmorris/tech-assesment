@@ -12,16 +12,19 @@
 */
 
 Route::get('/', function () {
+
 	return redirect('home');
 });
 
 Route::get('/home', function () {
+
 	return view('chrome', [
 		'content' => view('home')
 	]);
 });
 
 Route::get('/about', function () {
+
 	return view('chrome', [
 		'content' => view('about')
 	]);
@@ -29,6 +32,7 @@ Route::get('/about', function () {
 
 
 Route::get('/blank', function () {
+
 	return view('chrome', [
 		'content' => view('blank')
 	]);
@@ -36,7 +40,9 @@ Route::get('/blank', function () {
 
 Route::get('/news', function () {
 
-	$articles = \App\Models\Article::orderBy('id', 'desc')->paginate(30);
+	$articles = \App\Models\Article::with('images')
+		->orderBy('id', 'desc')
+		->paginate(30);
 
 	return view('chrome', [
 		'content' => view('news', [
@@ -49,7 +55,7 @@ Route::get('/news/{articleId}', function ($articleId) {
 
 	if(!$article = \App\Models\Article::where('id', $articleId)->first())
 	{
-		return 404;
+		abort(404);
 	}
 
 	$image   = $article->images()->first();
@@ -85,7 +91,16 @@ Route::get('/events/{eventId}', function ($eventId) {
 
 	if(!$event = \App\Models\Event::where('id', $eventId)->first())
 	{
-		return 404;
+		abort(404);
+	}
+
+	$image = $event->images()->first();
+
+	$imageCrop = NULL;
+
+	if($image)
+	{
+		$imageCrop = $image->crop(400, 400);
 	}
 
 	$encodedLocation = urlencode($event->location);
@@ -94,6 +109,7 @@ Route::get('/events/{eventId}', function ($eventId) {
 		'content' => view('event', [
 			'encodedLocation' => $encodedLocation
 			, 'event'         => $event
+			, 'image'         => $imageCrop
 			, 'tracking'      => $event->trackingData()
 		])
 	]);

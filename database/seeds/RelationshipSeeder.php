@@ -6,7 +6,7 @@ class RelationshipSeeder extends Seeder
 {
 	public function run()
 	{
-		$imageCount = 1085;
+		$imageCount = \App\Models\Image::count();
 		
 		\App\Models\Article::chunk(500, function($articles) use($imageCount) {
 			foreach ($articles as $article)
