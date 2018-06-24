@@ -18,7 +18,9 @@ RUN	chmod 775 /app \
 	&& mkdir -p storage/data
 
 RUN cd /app \
-	&& composer install --prefer-source --no-interaction
+	&& composer install --prefer-source --no-interaction \
+	&& curl -o wait-for-it.sh https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh \
+	&& chmod 775 wait-for-it.sh
 
 CMD cd /app \
 	&& echo "Setting environment vars..." \

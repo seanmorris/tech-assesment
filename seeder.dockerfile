@@ -19,7 +19,9 @@ RUN cd /app \
 RUN cd /app \
 	&& curl -o storage/data/mlb_log.csv https://seanmorr.is/mlb_log.csv \
 	&& curl -o storage/data/mlb_team_data.csv https://seanmorr.is/mlb_team_data.csv \
-	&& curl -o storage/data/mlb_park_data.csv https://seanmorr.is/mlb_park_data.csv
+	&& curl -o storage/data/mlb_park_data.csv https://seanmorr.is/mlb_park_data.csv \
+	&& curl -o wait-for-it.sh https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh \
+	&& chmod 775 wait-for-it.sh
 
 CMD cd /app \
 	&& echo "Setting environment vars..." \

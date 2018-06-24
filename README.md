@@ -20,7 +20,7 @@ Once you've done that, visit the following link:
 
 [http://localhost:9000/](http://localhost:9000/)
 
-If you lose your DB password, you can remove the DB volume:
+If you lose your DB password (i.e. by regenerating your docker-compose.yml), you can remove the DB volume:
 
 ```bash
 docker container rm tech-assesment_database_1
