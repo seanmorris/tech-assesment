@@ -8,7 +8,7 @@
 		@foreach ($events as $event)
 		    <li>
 		    	{{ date('m/d/Y', strtotime($event->happened_on)) }}
-		    	<a href = "events/{{ $event->id }}" title = "{{ $event->location }}">
+		    	<a href = "/events/{{ $event->id }}" title = "{{ $event->location }}">
 		    		{{ $event->title }}
 		    	</a>
 		    </li>

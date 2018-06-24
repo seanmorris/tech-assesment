@@ -7,7 +7,7 @@
 	<ul class = "news">
 		@foreach ($articles as $article)
 		    <li>
-		    	<a href = "news/{{ $article->id }}">
+		    	<a href = "/news/{{ $article->id }}">
 		    	@if(count($article->images))
 		    		<img class = "preview" src = "{{$article->images[0]->crop(100,100) }}" />
 		    	@endif
